@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<SshDeployHost>192.168.0.77</SshDeployHost>
+		<SshDeployClean />
+		<SshDeployTargetPath>/home/pi/PlantWellv1</SshDeployTargetPath>
+		<SshDeployUsername>pi</SshDeployUsername>
+		<SshDeployPassword>pi</SshDeployPassword>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<StartupObject>PlantWell.Program</StartupObject>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<RootNamespace>PlantWell</RootNamespace>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <PlatformTarget>ARM</PlatformTarget>
+	</PropertyGroup>
+	
+	<Target Condition="$(BuildingInsideSshDeploy) == '' and $(RuntimeIdentifier) == 'linux-arm'" Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="cd $(ProjectDir)&#xD;&#xA;dotnet-sshdeploy push" />
+		<Exec Command="dotnet-sshdeploy push -r $(RuntimeIdentifier)" />
+	</Target>
+	
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.9" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.9" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.9" />
+	  <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+	  <PackageReference Include="Unosquare.Raspberry.Abstractions" Version="0.4.1" />
+	  <PackageReference Include="Unosquare.Raspberry.IO" Version="0.27.1" />
+	  <PackageReference Include="Unosquare.RaspberryIO.Peripherals" Version="0.5.0" />
+	  <PackageReference Include="Unosquare.WiringPi" Version="0.5.1" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Update="appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+</Project>

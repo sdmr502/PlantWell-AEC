@@ -1,0 +1,13 @@
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\bin\Debug\netcoreapp3.1\PlantWellv1.exe
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\bin\Debug\netcoreapp3.1\PlantWellv1.deps.json
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\bin\Debug\netcoreapp3.1\PlantWellv1.runtimeconfig.json
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\bin\Debug\netcoreapp3.1\PlantWellv1.runtimeconfig.dev.json
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\bin\Debug\netcoreapp3.1\PlantWellv1.dll
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\bin\Debug\netcoreapp3.1\PlantWellv1.pdb
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\obj\Debug\netcoreapp3.1\PlantWellv1.csprojAssemblyReference.cache
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\obj\Debug\netcoreapp3.1\PlantWellv1.AssemblyInfoInputs.cache
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\obj\Debug\netcoreapp3.1\PlantWellv1.AssemblyInfo.cs
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\obj\Debug\netcoreapp3.1\PlantWellv1.csproj.CoreCompileInputs.cache
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\obj\Debug\netcoreapp3.1\PlantWellv1.dll
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\obj\Debug\netcoreapp3.1\PlantWellv1.pdb
+C:\Users\Sam\source\repos\PlantWellv1\PlantWellv1\obj\Debug\netcoreapp3.1\PlantWellv1.genruntimeconfig.cache
