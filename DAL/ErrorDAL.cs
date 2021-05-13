@@ -1,19 +1,20 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PlantWell.Models;
+using PlantWellBgClient.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace PlantWell.DAL
+namespace PlantWellBgClient.DAL
 {
-    public class ErrorDAL
+    public sealed class ErrorDAL
     {
         private string _connectionString;
-        public ErrorDAL(IConfiguration iconfiguration)
+        public ErrorDAL()
         {
-            _connectionString = iconfiguration.GetConnectionString("Default");
+//            _connectionString = iconfiguration.GetConnectionString("Default");
         }
+       /**
         public List<ErrorData> GetList(string queryString)
         {
             var listErrorModel = new List<ErrorData>();
@@ -28,15 +29,14 @@ namespace PlantWell.DAL
                     while (rdr.Read())
                     {
 
-                        /**
-                         * listErrorModel.Add(new EnvironmentData
+                         listErrorModel.Add(new EnvironmentData
                             {
                                 Id = Convert.ToInt32(rdr[0]),
                                 Country = rdr[1].ToString(),
                                 Version = Convert.ToBoolean(rdr[2])
                             });
-                         *
-                         **/
+                        
+                        
                     }
 
                 }
@@ -48,7 +48,7 @@ namespace PlantWell.DAL
             return listErrorModel;
         }
 
-
+        **/
         public void writeToDatabase()
         {
 

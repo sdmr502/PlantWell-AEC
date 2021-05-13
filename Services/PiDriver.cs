@@ -1,85 +1,68 @@
-﻿using System;
-using Unosquare.RaspberryIO;
-using Unosquare.RaspberryIO.Abstractions;
-using Unosquare.WiringPi;
+﻿using PlantWellBgClient.Models;
+using Sensors.Dht;
+using System;
+using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
+using Windows.Devices.Gpio;
+using System.Runtime.Caching;
+using System.Diagnostics;
+using Windows.Foundation;
 
-namespace PlantWell.Services
+namespace PlantWellBgClient.Services
 {
-    class PiDriver
+    public sealed class PiDriver
     {
+
         /**
          * Define inputs 
          */
-        public GpioPin MOISTURE_SENSOR_1;
-        public GpioPin INTAKE_DHT_SENSOR;
-        public GpioPin MAIN_DHT_SENSOR;
-        public GpioPin OUTTAKE_DHT_SENSOR;
+        private GpioPin MOISTURE_SENSOR_1;
 
+        private GpioPin INTAKE_DHT_SENSOR;
+        private DHTData intakeDHTData;
+
+        private GpioPin OUTTAKE_DHT_SENSOR;
+        private DHTData outtakeDHTData;
+
+        private GpioPin MAIN_DHT_SENSOR;
+        private DHTData mainDHTData;
 
         /**
          * Define Outputs 
          */
-        public GpioPin MAIN_LIGHTING;
-        public GpioPin SIDERIGHT_FAN;
-        public GpioPin SIDELEFT_FAN;
+        private GpioPin MAIN_LIGHTING;
+        private GpioPin SIDERIGHT_FAN;
+        private GpioPin SIDELEFT_FAN;
 
-        /**
-         * Define Controllers
-         */
-        //public GpioPin PWMModule;
-
-        public PiDriver() 
+        public PiDriver()
         {
-            Pi.Init<BootstrapWiringPi>();
 
-            /** Inputs **/
-            MOISTURE_SENSOR_1 = (GpioPin)Pi.Gpio[BcmPin.Gpio21];
-            MOISTURE_SENSOR_1.PinMode = GpioPinDriveMode.Input;
-            //MOISTURE_SENSOR_1.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, ISRCallback);
 
-            INTAKE_DHT_SENSOR = (GpioPin)Pi.Gpio[BcmPin.Gpio22];
-            //INTAKE_DHT_SENSOR.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, ISRCallback);
 
-            MAIN_DHT_SENSOR = (GpioPin)Pi.Gpio[BcmPin.Gpio16];
-            //MAIN_DHT_SENSOR.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, ISRCallback);
+            MOISTURE_SENSOR_1 = GpioController.GetDefault().OpenPin(21, GpioSharingMode.Exclusive);
 
-            OUTTAKE_DHT_SENSOR = (GpioPin)Pi.Gpio[BcmPin.Gpio25];
-            //OUTTAKE_DHT_SENSOR.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, ISRCallback);
+            INTAKE_DHT_SENSOR = GpioController.GetDefault().OpenPin(22, GpioSharingMode.Exclusive);
 
-            /**Outputs**/
-            MAIN_LIGHTING = (GpioPin)Pi.Gpio[BcmPin.Gpio17];
-            MAIN_LIGHTING.PinMode = GpioPinDriveMode.Output;
+            OUTTAKE_DHT_SENSOR = GpioController.GetDefault().OpenPin(25, GpioSharingMode.Exclusive);
 
-            SIDERIGHT_FAN = (GpioPin)Pi.Gpio[BcmPin.Gpio27];
-            SIDERIGHT_FAN.PinMode = GpioPinDriveMode.Output;
+            MAIN_DHT_SENSOR = GpioController.GetDefault().OpenPin(16, GpioSharingMode.Exclusive);
 
-            SIDELEFT_FAN = (GpioPin)Pi.Gpio[BcmPin.Gpio23];
-            SIDELEFT_FAN.PinMode = GpioPinDriveMode.Output;
+
+            /**
+             * Define Outputs 
+             */
+            MAIN_LIGHTING = GpioController.GetDefault().OpenPin(17);
+            SIDERIGHT_FAN = GpioController.GetDefault().OpenPin(27);
+            SIDELEFT_FAN = GpioController.GetDefault().OpenPin(23);
+
+
 
         }
 
 
-        static void AddI2C(string hex) {
-            // Register a device on the bus
-            var myI2CDevices = Pi.I2C.AddDevice(0x20);
 
-            // Simple Write and Read (there are algo register read and write methods)
-            myI2CDevices.Write(0x44);
-            var response = myI2CDevices.Read();
 
-            // List registered devices on the I2C Bus
-            foreach (var device in Pi.I2C.Devices)
-            {
-                Console.WriteLine($"Registered I2C Device: {device.DeviceId}");
-            }
-
-        }
-
-        // Define the implementation of the delegate;
-        static void ISRCallback()
-        {
-            Console.WriteLine("Pin Activated...");
-        }
 
     }
 }

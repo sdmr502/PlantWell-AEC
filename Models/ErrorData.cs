@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlantWell.Models
+namespace PlantWellBgClient.Models
 {
-    public class ErrorData
+    public sealed class ErrorData
     {
         public float Id { get; set; }
         public int Level { get; set; }

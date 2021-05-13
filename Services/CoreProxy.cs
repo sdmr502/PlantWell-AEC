@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 
 
-namespace PlantWell.Services
+namespace PlantWellBgClient.Services
 {
     class CoreProxy
     {
